@@ -23,7 +23,7 @@ static int borderpx = 0;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/sh";
+static char *shell = "/usr/bin/zsh";
 char *utmp = NULL;
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
@@ -124,21 +124,34 @@ float alpha = 1.0;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-    /* 8 normal colors */
-    "#51576D", "#E78284", "#A6D189", "#E5C890", "#8CAAEE", "#F4B8E4", "#81C8BE",
-    "#B5BFE2",
+	/* 8 normal colors */
+	"#5C5F77",
+	"#D20F39",
+	"#40A02B",
+	"#DF8E1D",
+	"#1E66F5",
+	"#EA76CB",
+	"#179299",
+	"#ACB0BE",
 
-    /* 8 bright colors */
-    "#626880", "#E78284", "#A6D189", "#E5C890", "#8CAAEE", "#F4B8E4", "#81C8BE",
-    "#A5ADCE",
+	/* 8 bright colors */
+	"#6C6F85",
+	"#D20F39",
+	"#40A02B",
+	"#DF8E1D",
+	"#1E66F5",
+	"#EA76CB",
+	"#179299",
+	"#BCC0CC",
 
-    [256] = "#C6D0F5", /* default foreground colour */
-    [257] = "#303446", /* default background colour */
-    [258] = "#F2D5CF", /*575268*/
+   [256] = "#4C4F69", /* default foreground colour */
+   [257] = "#EFF1F5", /* default background colour */
+   [258] = "#DC8A78", /*575268*/
+
 };
 
+
 /*
- * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
 unsigned int defaultfg = 256;
@@ -237,15 +250,14 @@ static MouseShortcut mshortcuts[] = {
 #define MODKEY Mod1Mask
 #define TERMMOD (Mod4Mask | ShiftMask)
 
-MouseKey mkeys[] =
-    {
-        /* button               mask                        function argument */
-        {Button4, XK_NO_MOD, kscrollup, {.i = mousescrollincrement}},
-        {Button5, XK_NO_MOD, kscrolldown, {.i = mousescrollincrement}},
-        {Button4, ControlMask, zoom, {.f = +1}},
-        {Button5, ControlMask, zoom, {.f = -1}},
-        {Button4, ControlMask | ShiftMask, zoom, {.f = +1}},
-        {Button5, ControlMask | ShiftMask, zoom, {.f = -1}},
+MouseKey mkeys[] = {
+    /* button               mask                        function argument */
+    {Button4, XK_NO_MOD, kscrollup, {.i = mousescrollincrement}},
+    {Button5, XK_NO_MOD, kscrolldown, {.i = mousescrollincrement}},
+    {Button4, ControlMask, zoom, {.f = +1}},
+    {Button5, ControlMask, zoom, {.f = -1}},
+    {Button4, ControlMask | ShiftMask, zoom, {.f = +1}},
+    {Button5, ControlMask | ShiftMask, zoom, {.f = -1}},
 };
 
 static char *openurlcmd[] = {"/bin/sh", "-c", "st-urlhandler", "externalpipe",
