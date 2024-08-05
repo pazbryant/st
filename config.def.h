@@ -10,8 +10,6 @@ static char *font =
 static char *font2[] = {
     "Maple Mono NF:pixelsize=12:style=Bold:antialias=true:autohint=true",
     "Maple Mono NF:pixelsize=12:style=Italic:antialias=true:autohint=true"};
-static char *font3[] = {
-    "JetBrainsMono NFM:pixelsize=12:antialias=true:autohint=true"};
 static char *font4[] = {"monospace:pixelsize=12:antialias=true:autohint=true"};
 static int borderpx = 0;
 
@@ -31,7 +29,7 @@ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 char *vtiden = "\033[?6c";
 
 /* Kerning / character bounding-box multipliers */
-static float cwscale = 1.1;
+static float cwscale = 1.05;
 static float chscale = 1.0;
 
 /*
@@ -130,7 +128,7 @@ static const char *colorname[] = {
 	"#40A02B",
 	"#DF8E1D",
 	"#1E66F5",
-	"#EA76CB",
+	"#179299",
 	"#179299",
 	"#ACB0BE",
 
@@ -139,7 +137,7 @@ static const char *colorname[] = {
 	"#D20F39",
 	"#40A02B",
 	"#DF8E1D",
-	"#1E66F5",
+	"#179299",
 	"#EA76CB",
 	"#179299",
 	"#BCC0CC",
