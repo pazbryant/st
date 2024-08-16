@@ -21,8 +21,9 @@ static int borderpx = 2;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char *shell = "/bin/sh";
+static char *shell = "/bin/env sh";
 char *utmp = NULL;
+
 /* scroll program: to enable use a string like "scroll" */
 char *scroll = NULL;
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
@@ -76,7 +77,7 @@ static unsigned int blinktimeout = 800;
 /*
  * thickness of underline and bar cursors
  */
-static unsigned int cursorthickness = 2;
+static unsigned int cursorthickness = 1;
 
 /*
  * 1: render most of the lines/blocks characters without using the font for
@@ -84,8 +85,8 @@ static unsigned int cursorthickness = 2;
  *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
  * 0: disable (render all U25XX glyphs normally from the font).
  */
-const int boxdraw = 0;
-const int boxdraw_bold = 0;
+const int boxdraw = 1;
+const int boxdraw_bold = 1;
 
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
 const int boxdraw_braille = 0;
@@ -124,7 +125,6 @@ float alpha_def;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-	/* 8 normal colors */
 	"black",
 	"red3",
 	"green3",
@@ -133,8 +133,6 @@ static const char *colorname[] = {
 	"magenta3",
 	"cyan3",
 	"gray90",
-
-	/* 8 bright colors */
 	"gray50",
 	"red",
 	"green",
@@ -143,14 +141,11 @@ static const char *colorname[] = {
 	"magenta",
 	"cyan",
 	"white",
-
 	[255] = 0,
-
-	/* more colors can be added after 255 to use with DefaultXX */
 	"#cccccc",
 	"#555555",
-	"gray90", /* default foreground colour */
-	"black", /* default background colour */
+	"gray90",
+	"black", 
 };
 
 
@@ -170,7 +165,7 @@ static unsigned int defaultrcs = 257;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 4;
 
 /*
  * Default columns and rows numbers
@@ -233,7 +228,7 @@ ResourcePref resources[] = {
 		{ "borderpx",     INTEGER, &borderpx },
 		{ "cwscale",      FLOAT,   &cwscale },
 		{ "chscale",      FLOAT,   &chscale },
-		{ "alpha",      FLOAT,   &alpha },
+		{ "alpha",        FLOAT,   &alpha },
 };
 
 /*
@@ -245,11 +240,10 @@ static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
 	{ XK_ANY_MOD,            Button4, kscrollup,      {.f = mousescrollincrement} },
 	{ XK_ANY_MOD,            Button5, kscrolldown,    {.f = mousescrollincrement} },
-	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
-	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
-	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
-	{ ShiftMask,            Button5, ttysend,        {.s = "\033[6;2~"} },
-	{ XK_ANY_MOD,           Button5, ttysend,        {.s = "\005"} },
+	{ ShiftMask,             Button4, ttysend,        {.s = "\033[5;2~"} },
+	{ XK_ANY_MOD,            Button4, ttysend,        {.s = "\031"} },
+	{ ShiftMask,             Button5, ttysend,        {.s = "\033[6;2~"} },
+	{ XK_ANY_MOD,            Button5, ttysend,        {.s = "\005"} },
 };
 
 /* Internal keyboard shortcuts. */
@@ -258,19 +252,19 @@ static MouseShortcut mshortcuts[] = {
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	{ TERMMOD,              XK_plus,       zoom,           {.f = +1} },
-	{ ControlMask,              XK_minus,        zoom,           {.f = -1} },
-	{ ControlMask,              XK_equal,        zoomreset,      {.f =  0} },
+	{ TERMMOD,              XK_plus,        zoom,           {.f = +1  } },
+	{ ControlMask,          XK_minus,       zoom,           {.f = -1  } },
+	{ ControlMask,          XK_equal,       zoomreset,      {.f =  0  } },
   /*copy and paste*/
-	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
-	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
+	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0  } },
+	{ TERMMOD,              XK_V,           clippaste,      {.i =  0  } },
   /*change alpha*/
-	{ MODKEY,               XK_minus, chgalpha,       {.f = +1} }, /* Decrease opacity */
-	{ MODKEY|ShiftMask,     XK_plus,  chgalpha,       {.f = -1} }, /* Increase opacity */
-	{ MODKEY,               XK_equal,chgalpha,       {.f =  0} }, /* Reset opacity */
+	{ MODKEY,               XK_minus,       chgalpha,       {.f = +1  } },
+	{ MODKEY|ShiftMask,     XK_plus,        chgalpha,       {.f = -1  } },
+	{ MODKEY,               XK_equal,       chgalpha,       {.f =  0  } },
   /*scroll*/
-	{ TERMMOD,            XK_K,     kscrollup,      {.f = -0.5} },
-	{ TERMMOD,            XK_J,   kscrolldown,      {.f = -0.5} },
+	{ TERMMOD,              XK_K,           kscrollup,      {.f = -0.5} },
+	{ TERMMOD,              XK_J,           kscrolldown,    {.f = -0.5} },
 };
 
 /*
