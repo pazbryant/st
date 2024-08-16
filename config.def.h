@@ -119,6 +119,9 @@ unsigned int tabspaces = 8;
 /* bg opacity */
 float alpha = 1.0;
 
+/* Background opacity */
+float alpha_def;
+
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
 	/* 8 normal colors */
@@ -252,18 +255,16 @@ static MouseShortcut mshortcuts[] = {
 
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function        argument */
-	{ XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
-	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
-	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ TERMMOD,              XK_Prior,       zoom,           {.f = +1} },
-	{ TERMMOD,              XK_Next,        zoom,           {.f = -1} },
-	{ TERMMOD,              XK_Home,        zoomreset,      {.f =  0} },
+	{ TERMMOD,              XK_plus,       zoom,           {.f = +1} },
+	{ ControlMask,              XK_minus,        zoom,           {.f = -1} },
+	{ ControlMask,              XK_equal,        zoomreset,      {.f =  0} },
+  /*copy and paste*/
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0} },
-	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
-	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
-	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+  /*change alpha*/
+	{ MODKEY,               XK_minus, chgalpha,       {.f = +1} }, /* Decrease opacity */
+	{ MODKEY|ShiftMask,     XK_plus,  chgalpha,       {.f = -1} }, /* Increase opacity */
+	{ MODKEY,               XK_equal,chgalpha,       {.f =  0} }, /* Reset opacity */
 };
 
 /*
