@@ -7,7 +7,7 @@ include config.mk
 SRC = st.c x.c boxdraw.c hb.c
 OBJ = $(SRC:.c=.o)
 
-all: st
+all: st-light
 
 config.h:
 	cp config.def.h config.h
@@ -15,42 +15,42 @@ config.h:
 .c.o:
 	$(CC) $(STCFLAGS) -c $<
 
-st.o: config.h st.h win.h
+st-light.o: config.h st.h win.h
 x.o: arg.h config.h st.h win.h hb.h
 boxdraw.o: config.h st.h boxdraw_data.h
 hb.o: st.h
 
 $(OBJ): config.h config.mk
 
-st: $(OBJ)
+st-light: $(OBJ)
 	$(CC) -o $@ $(OBJ) $(STLDFLAGS)
 
 clean:
-	rm -f st $(OBJ) st-$(VERSION).tar.gz
+	rm -f st-light $(OBJ) st-light-$(VERSION).tar.gz
 
 dist: clean
-	mkdir -p st-$(VERSION)
+	mkdir -p st-light-$(VERSION)
 	cp -R FAQ LEGACY TODO LICENSE Makefile README config.mk\
 		config.def.h st.info st.1 arg.h st.h win.h $(SRC)\
-		st-$(VERSION)
-	tar -cf - st-$(VERSION) | gzip > st-$(VERSION).tar.gz
-	rm -rf st-$(VERSION)
+		st-light-$(VERSION)
+	tar -cf - st-light-$(VERSION) | gzip > st-light-$(VERSION).tar.gz
+	rm -rf st-light-$(VERSION)
 
-install: st
+install: st-light
 	mkdir -p $(DESTDIR)$(PREFIX)/bin
-	cp -f st $(DESTDIR)$(PREFIX)/bin
-	chmod 755 $(DESTDIR)$(PREFIX)/bin/st
+	cp -f st-light $(DESTDIR)$(PREFIX)/bin
+	chmod 755 $(DESTDIR)$(PREFIX)/bin/st-light
 	mkdir -p $(DESTDIR)$(MANPREFIX)/man1
-	sed "s/VERSION/$(VERSION)/g" < st.1 > $(DESTDIR)$(MANPREFIX)/man1/st.1
+	sed "s/VERSION/$(VERSION)/g" < st.1 > $(DESTDIR)$(MANPREFIX)/man1/st-light.1
 	chmod 644 $(DESTDIR)$(MANPREFIX)/man1/st.1
 	tic -sx st.info
 	@echo Please see the README file regarding the terminfo entry of st.
 	mkdir -p $(DESTDIR)$(PREFIX)/share/applications
-	cp -f st.desktop $(DESTDIR)$(PREFIX)/share/applications
+	cp -f st-light.desktop $(DESTDIR)$(PREFIX)/share/applications
 
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)/bin/st
-	rm -f $(DESTDIR)$(MANPREFIX)/man1/st.1
+	rm -f $(DESTDIR)$(PREFIX)/bin/st-light
+	rm -f $(DESTDIR)$(MANPREFIX)/man1/st-light.1
 	rm -f $(DESTDIR)$(PREFIX)/share/applications/st.desktop
 
 .PHONY: all clean dist install uninstall

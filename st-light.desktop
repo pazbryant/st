@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=st
+Name=st-light
 Comment=st is a simple terminal implementation for X
-Exec=st
+Exec=st-light
 Icon=utilities-terminal
 Terminal=false
 Type=Application
