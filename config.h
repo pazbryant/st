@@ -142,8 +142,8 @@ static const char *colorname[] = {
     "#70c0b1",
     "#eaeaea",
     [255] = 0,
-    [256] = "#c9558e",
-    [257] = "#c5c8c6",
+    [256] = "#862d59",
+    [257] = "#ffffff",
     [258] = "#181818",
 };
 
@@ -157,7 +157,7 @@ unsigned int defaultfg = 257;
 unsigned int defaultbg = 258;
 
 unsigned int defaultcs = 256;
-static unsigned int defaultrcs = 256;
+unsigned int defaultrcs = 256;
 
 
 /*
