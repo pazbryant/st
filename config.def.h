@@ -257,16 +257,21 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_plus,        zoom,           {.f = +1  } },
 	{ ControlMask,          XK_minus,       zoom,           {.f = -1  } },
 	{ ControlMask,          XK_equal,       zoomreset,      {.f =  0  } },
+
   /*copy and paste*/
 	{ TERMMOD,              XK_C,           clipcopy,       {.i =  0  } },
 	{ TERMMOD,              XK_V,           clippaste,      {.i =  0  } },
+
   /*change alpha*/
 	{ MODKEY,               XK_minus,       chgalpha,       {.f = +1  } },
 	{ MODKEY|ShiftMask,     XK_plus,        chgalpha,       {.f = -1  } },
 	{ MODKEY,               XK_equal,       chgalpha,       {.f =  0  } },
+
   /*scroll*/
 	{ TERMMOD,              XK_K,           kscrollup,      {.f = -0.5} },
 	{ TERMMOD,              XK_J,           kscrolldown,    {.f = -0.5} },
+
+	{ TERMMOD,              XK_T,           newterm,        {.i =  0  } },
 };
 
 /*
