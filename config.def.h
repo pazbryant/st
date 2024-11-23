@@ -142,9 +142,9 @@ static const char *colorname[] = {
     "#70c0b1",
     "#eaeaea",
     [255] = 0,
-    [256] = "#862d59",
-    [257] = "#bcbcbc",
-    [258] = "#1d1f21",
+    [256] = "#ffffff",
+    [257] = "#1d1f21",
+    [258] = "#862d59",
 };
 
 
@@ -153,11 +153,11 @@ static const char *colorname[] = {
  * foreground, background, cursor, reverse cursor
  */
 
-unsigned int defaultfg = 257;
-unsigned int defaultbg = 258;
+unsigned int defaultfg = 256;
+unsigned int defaultbg = 257;
 
-unsigned int defaultcs = 256;
-unsigned int defaultrcs = 256;
+unsigned int defaultcs = 258;
+unsigned int defaultrcs = 258;
 
 
 /*
@@ -180,8 +180,8 @@ static unsigned int rows = 24;
  * Default colour and shape of the mouse cursor
  */
 static unsigned int mouseshape = XC_xterm;
-static unsigned int mousefg = 7;
-static unsigned int mousebg = 0;
+static unsigned int mousefg = 258;
+static unsigned int mousebg = 258;
 
 /*
  * Color used to display font attributes when fontconfig selected a font which
@@ -217,9 +217,9 @@ ResourcePref resources[] = {
 		{ "color13",      STRING,  &colorname[13] },
 		{ "color14",      STRING,  &colorname[14] },
 		{ "color15",      STRING,  &colorname[15] },
-		{ "cursorColor",  STRING,  &colorname[256] },
-		{ "foreground",   STRING,  &colorname[257] },
-		{ "background",   STRING,  &colorname[258] },
+		{ "foreground",   STRING,  &colorname[256] },
+		{ "background",   STRING,  &colorname[257] },
+		{ "cursorColor",  STRING,  &colorname[258] },
 		{ "termname",     STRING,  &termname },
 		{ "shell",        STRING,  &shell },
 		{ "minlatency",   INTEGER, &minlatency },
