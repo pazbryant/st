@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Maple Mono NF:pixelsize=12:antialias=true:autohint=true";
+static char *font = "monospace:pixelsize=12:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
   "Noto Color Emoji:pixelsize=12:antialias=true:autohint=true",
@@ -77,7 +77,7 @@ static unsigned int blinktimeout = 800;
 /*
  * thickness of underline and bar cursors
  */
-static unsigned int cursorthickness = 2;
+static unsigned int cursorthickness = 1;
 
 /*
  * 1: render most of the lines/blocks characters without using the font for
