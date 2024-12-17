@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Maple Mono NF:pixelsize=12:antialias=true:autohint=true";
+static char *font = "monospace:pixelsize=12:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
   "Noto Color Emoji:pixelsize=12:antialias=true:autohint=true",
@@ -143,7 +143,7 @@ static const char *colorname[] = {
     "#2f5af3",
     [255] = 0,
     "#000000",
-    "#f9f9f9",
+    "#bbbbbb",
     "#c9558e",
 };
 
@@ -167,7 +167,7 @@ static unsigned int defaultrcs = 258;
  * 6: Bar ("|")
  * 7: Snowman ("☃")
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 1;
 
 /*
  * Default columns and rows numbers
