@@ -265,7 +265,7 @@ static Shortcut shortcuts[] = {
   /*change alpha*/
 	{ MODKEY,                    XK_minus,       chgalpha,       {.f = +1  } },
 	{ MODKEY|ShiftMask,          XK_plus,        chgalpha,       {.f = -1  } },
-	{ MODKEY,                    XK_equal,       chgalpha,       {.f =  0  } },
+	{ MODKEY,                    XK_exclam,      chgalpha,       {.f =  0  } },
 
   /*scroll*/
 	{ TERMMOD,                   XK_K,           kscrollup,      {.f = -0.5} },
