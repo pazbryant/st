@@ -89,7 +89,7 @@ const int boxdraw = 1;
 const int boxdraw_bold = 1;
 
 /* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
-const int boxdraw_braille = 0;
+const int boxdraw_braille = 1;
 
 /*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
@@ -180,8 +180,8 @@ static unsigned int rows = 24;
  * Default colour and shape of the mouse cursor
  */
 static unsigned int mouseshape = XC_xterm;
-static unsigned int mousefg = 258;
-static unsigned int mousebg = 258;
+static unsigned int mousefg = 7;
+static unsigned int mousebg = 0;
 
 /*
  * Color used to display font attributes when fontconfig selected a font which
