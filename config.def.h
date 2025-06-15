@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "monospace:pixelsize=12:antialias=true:autohint=true";
+static char *font = "monospace:pixelsize=13.5:antialias=true:autohint=true:style:Bold";
 /* Spare fonts */
 static char *font2[] = {
   "Noto Color Emoji:pixelsize=12:antialias=true:autohint=true",
