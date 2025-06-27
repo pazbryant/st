@@ -1593,19 +1593,24 @@ xmakeglyphfontspecs(XftGlyphFontSpec *specs, const Glyph *glyphs, int len, int x
 void
 chgalpha(const Arg *arg)
 {
-   if (arg->f == -1.0f && alpha >= 0.1f)
-      alpha -= 0.1f;
-   else if (arg->f == 1.0f && alpha < 1.0f)
-      alpha += 0.1f;
-   else if (arg->f == 0.0f)
-      alpha = alpha_def;
-   else
-      return;
+    if (arg->f == -1.0f && alpha > 0.0f)
+        alpha -= 0.1f;
+    else if (arg->f == 1.0f && alpha < 1.0f)
+        alpha += 0.1f;
+    else if (arg->f == 0.0f)
+        alpha = alpha_def;
+    else
+        return;
 
-   dc.col[defaultbg].color.alpha = (unsigned short)(0xFFFF * alpha);
-   /* Required to remove artifacting from borderpx */
-   cresize(0, 0);
-   redraw();
+    if (alpha > 1.0f)
+        alpha = 1.0f;
+    else if (alpha < 0.0f)
+        alpha = 0.0f;
+
+    dc.col[defaultbg].color.alpha = (unsigned short)(0xFFFF * alpha);
+    /* Required to remove artifacting from borderpx */
+    cresize(0, 0);
+    redraw();
 }
 
 void
